@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Account Login</title>
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+</head>
+
+<body>
+  <div class="login-cover">
+    <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+  </div>
+
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="#">PCNL Voting System</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
+
+  <header id="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center"> Admin Area <small>Account Login</small></h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 col-md-offset-4">
+          <form id="login" action="index.html" class="well notforgot-pw" onsubmit="return false;">
+            <div id="notforgot-pw">
+              <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" placeholder="admin" id="username" disabled>
+              </div>
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" pattern=".{8,16}" required title="8 to 16 characters" required="required" class="form-control" placeholder="Password" id="password" passwordCheck="passwordCheck">
+                <hr>
+                <small><i><a href="#" id="forgot">Forgot password?</i></a></small>
+              </div>
+              <button id="btn-login" type="submit" class="btn btn-default btn-block" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Checking Password">Login</button>
+
+            </div>
+
+
+          </form>
+          <form action="index.html" class="well forgot-pw" onsubmit="return false;" novalidate>
+
+            <div id="forgot-pw">
+
+              <div class="form-group">
+                <label for="security">Security question:</label>
+                <select class="selectpicker" data-width="auto" id="security">
+                    <option value="other">other</option>
+                    <option value="Who is your childhood favorite hero?">Who is your favorite childhood hero?</option>
+                    <option value="What is the name of your first pet?">What is the name of your first pet?</option>
+                    <option value="What town was your father born in?">What town was your father born in?</option>
+                    <option value="What town was your mother born in?">What town was your mother born in?</option>
+                    <option value="What is the first name of your favorite aunt?">What is the first name of your favorite aunt?</option>
+                    <option value="What is the first name of your favorite uncle?">What is the first name of your favorite uncle?</option>
+              </select>
+              </div>
+              <div class="form-group">
+                <label>If other please specify:</label>
+                <input type="text" required="required" class="form-control" placeholder="Security question" id="other">
+              </div>
+              <div class="form-group">
+                <label>Answer</label>
+                <input type="text" required="required" class="form-control" placeholder="Answer" id="answer">
+              </div>
+              <button id="btn-security" type="button" class="btn btn-default btn-block" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Checking">Submit</button>
+
+            </div>
+
+            <div class="form-group" style="text-align:center">
+              <small><i><a href="#" id="lg">Login</i></a></small>
+            </div>
+          </form>
+          <form id="none" action="index.html" class="well cn" onsubmit="return false;">
+            <div class="form-group">
+              <label>Enter new password:</label>
+              <input type="password" class="form-control" pattern=".{8,16}" required title="8 to 16 characters" required="required" placeholder="New Password" id="p1">
+            </div>
+            <div class="form-group">
+              <label>Confirm password:</label>
+              <input type="password" pattern=".{8,16}" required title="8 to 16 characters" required="required" class="form-control" placeholder="Confirm Password" id="p2">
+            </div>
+            <button id="btn-newpass" type="submit" class="btn btn-default btn-block" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Checking Password">Submit</button>
+
+          </form>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <footer id="footer">
+    <p>Copyright PCNL, &copy; 2018</p>
+  </footer>
+
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase-firestore.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+  <script src=https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+  <script src="js/jquery.preloaders.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/offline.js"></script>
+  
+</body>
+
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PCNL SSC Voting Results</title>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+
+</head>
+
+<body>
+  <div class="login-cover">
+    <p style="margin-right: 10px;margin-top: 10px">Loading...</p>
+    <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+  </div>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="#">PCNL SSC <strong>Admin Panel</strong></a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a id="name" href="#">Administrator</a></li>
+        <li><a href="#" id="logout">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header id="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10">
+          <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Winner <small>Result's of the election</small></h1>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <ol class="breadcrumb">
+        <!-- <li class="active">Dashboard</li>
+ -->
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">Dashboard</a></li>
+            <li><a href="winner.html">Winner</a></li>
+            <li><a href="partylist.html">Party List</a></li>
+            <li><a href="candidates.html">Candidates</a></li>
+            <li><a href="position.html">Position</a></li>
+            <li><a href="voters.html">Voters</a></li>
+            <li><a href="student.html">Student Information</a></li>
+            <li><a href="course.html">Course</a></li>
+            <li><a href="database.html">Database</a></li>
+          </ul>
+
+        </div>
+        <!--/.nav-collapse -->
+      </ol>
+    </div>
+  </section>
+
+  <section id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <h3 id="noresult" style="color:#777;">No election results yet. The election is still on going!</h3>
+          <div id="time">
+
+          </div>
+          <div class="panel panel-default" id="win" style="DISPLAY:NONE;">
+            <div class="panel-heading main-color-bg">
+              <h3 class="panel-title">Result's</h3>
+
+            </div>
+              <div class="panel-body" id="print-me">
+
+                <div id="group">
+
+                </div>
+              </div>
+              <button type="button" class="btn" id="btn-print" style="margin-bottom:30px"><i class="fas fa-print"></i>Print</button>
+
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <p>Copyright PCNL SSC, &copy; 2018</p>
+  </footer>
+
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase-firestore.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <script src="js/jquery.countdown.js"></script>
+
+  <script src="js/jquery.preloaders.js"></script>
+
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/removeToastr.js"></script>
+  <script src="js/checkonline.js"></script>
+  <script src="js/checkoffline.js"></script>
+  <!-- <script src="js/dashboarddisplay.js"></script> -->
+  <!-- <script src="js/percentage.js"></script> -->
+  <script src="js/jQuery.print.min.js"></script>
+  <script src="js/result.js"></script>
+  <script src="js/offline.js"></script>
+  
+</body>
+
+</html>

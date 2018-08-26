@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Area | Database</title>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/offline-theme-dark.css" rel="stylesheet">
+  <link href="css/offline-language-english.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+
+</head>
+
+<body>
+  <div class="login-cover">
+    <!-- Spinner Component -->
+    <p style="margin-right: 10px;margin-top: 10px">Loading...</p>
+    <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+  </div>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="#">PCNL SSC</a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a id="name" href="#">Administrator</a></li>
+        <li><a href="#" id="logout">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header id="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10">
+          <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Database <small>Manage Database Records</small></h1>
+        </div>
+        <!-- <div class="col-md-2">
+            <div class="dropdown create">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Create Content
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a type="button" data-toggle="modal" data-target="#addPage">Add Page</a></li>
+                <li><a href="#">Add Post</a></li>
+                <li><a href="#">Add User</a></li>
+              </ul>
+            </div>
+          </div> -->
+      </div>
+    </div>
+  </header>
+
+  <section id="breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb">
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="index.html">Dashboard</a></li>
+              <li><a href="winner.html">Winner</a></li>
+              <li><a href="partylist.html">Party List</a></li>
+              <li><a href="candidates.html">Candidates</a></li>
+              <li><a href="position.html">Position</a></li>
+              <li><a href="voters.html">Voters</a></li>
+              <li><a href="student.html">Student Information</a></li>
+              <li><a href="course.html">Course</a></li>
+              <li><a href="database.html">Database</a></li>
+            </ul>
+
+
+        </div>
+        <!--/.nav-collapse -->
+      </ol>
+    </div>
+  </section>
+
+  <section id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div id="faq" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading main-color-bg" id="tab1">
+                <h3 class="panel-title"><a data-toggle="collapse" data-parent="#faq" href="#cp" aria-expanded="true" aria-controls="cp">
+              Change Password
+              </a></h3>
+              </div>
+              <div id="cp" class="panel-collapse collapse" role="tabpanel" aria-labelledby="tab1">
+                <div class="panel-body">
+                  <form id="none" action="index.html" class="well" onsubmit="return false;">
+                    <div class="form-group">
+                      <label>Enter old password:</label>
+                      <input type="password" class="form-control" pattern=".{8,16}" required title="8 to 16 characters" required="required" placeholder="Old Password" id="oldpass">
+                    </div>
+                    <div class="form-group">
+                      <label>Enter new password:</label>
+                      <input type="password" class="form-control" pattern=".{8,16}" required title="8 to 16 characters" required="required" placeholder="New Password" id="newpass">
+                    </div>
+                    <div class="form-group">
+                      <label>Confirm password:</label>
+                      <input type="password" pattern=".{8,16}" required title="8 to 16 characters" required="required" class="form-control" placeholder="Confirm Password" id="conpass">
+                    </div>
+                    <button id="btn-newpass" type="submit" class="btn btn-default btn-block" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Checking Password">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading main-color-bg" id="tab2">
+                <h3 class="panel-title"><a data-toggle="collapse" data-parent="#faq" href="#cp1" aria-expanded="true" aria-controls="cp1">
+              Change Recovery Question & Answer
+              </a></h3>
+              </div>
+              <div id="cp1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="tab2">
+                <div class="panel-body">
+                  <form action="index.html" class="well" onsubmit="return false;" novalidate>
+
+                    <div id="forgot-pw">
+
+                      <div class="form-group">
+                        <label for="security">Security question:</label>
+                        <select class="selectpicker" data-width="auto" id="security">
+                            <option value="other">other</option>
+                            <option value="Who is your childhood favorite hero?">Who is your favorite childhood hero?</option>
+                            <option value="What is the name of your first pet?">What is the name of your first pet?</option>
+                            <option value="What town was your father born in?">What town was your father born in?</option>
+                            <option value="What town was your mother born in?">What town was your mother born in?</option>
+                            <option value="What is the first name of your favorite aunt?">What is the first name of your favorite aunt?</option>
+                            <option value="What is the first name of your favorite uncle?">What is the first name of your favorite uncle?</option>
+                      </select>
+                      </div>
+                      <div class="form-group">
+                        <label>If other please specify:</label>
+                        <input type="text" required="required" class="form-control" placeholder="Security question" id="other">
+                      </div>
+                      <div class="form-group">
+                        <label>Answer</label>
+                        <input type="text" required="required" class="form-control" placeholder="Answer" id="answer">
+                      </div>
+                      <button id="btn-security" type="button" class="btn btn-default btn-block" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Checking">Submit</button>
+
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            </div>
+
+          </div>
+          <div class="col-md-6">
+            <div id="faq1" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default">
+                <div class="panel-heading main-color-bg" id="tabb1">
+                  <h3 class="panel-title"><a data-toggle="collapse" data-parent="#faq1" href="#sd" aria-expanded="true" aria-controls="sd">
+                Save Current Election
+                </a></h3>
+                </div>
+                <div id="sd" class="panel-collapse collapse" role="tabpanel" aria-labelledby="tabb1">
+                  <div class="panel-body">
+                    <form id="none" action="index.html" class="well" onsubmit="return false;">
+                      <div class="form-group">
+                        <label>Enter database name:</label>
+                        <input type="text" class="form-control"  required="required" placeholder="Database name" id="dbname">
+                      </div>
+
+                      <button id="btn-dbname" type="submit" class="btn btn-default btn-block" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Saving...">Submit</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading main-color-bg" id="tabb2">
+                  <h3 class="panel-title"><a data-toggle="collapse" data-parent="#faq1" href="#dd" aria-expanded="true" aria-controls="dd">
+                Delete Database
+                </a></h3>
+                </div>
+                <div id="dd" class="panel-collapse collapse" role="tabpanel" aria-labelledby="tabb2">
+                  <div class="panel-body">
+                    <form action="index.html" class="well" onsubmit="return false;" novalidate>
+                      <div class="form-group">
+                        <label for="dblist">Databases:</label>
+                        <select id="dblist" >
+                        </select>
+                      </div>
+                      <button id="btn-deletedb" type="submit" class="btn btn-default btn-block" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Deleting database...">Delete</button>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading main-color-bg" id="tabb3">
+                  <h3 class="panel-title"><a data-toggle="collapse" data-parent="#faq1" href="#impd" aria-expanded="true" aria-controls="impd">
+                Import Database
+                </a></h3>
+                </div>
+                <div id="impd" class="panel-collapse collapse" role="tabpanel" aria-labelledby="tabb3">
+                  <div class="panel-body">
+                    <form action="index.html" class="well" onsubmit="return false;" novalidate>
+                      <div class="form-group">
+                        <label for="dblist_load">Databases:</label>
+                        <select id="dblist_load" >
+                        </select>
+                      </div>
+                      <button id="btn-loaddb" type="submit" class="btn btn-default btn-block" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Overwriting">Load Database</button>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+              </div>
+
+            </div>
+        </div>
+  </section>
+
+  <footer id="footer">
+    <p>Copyright PCNL SSC, &copy; 2018</p>
+  </footer>
+
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase-firestore.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+  <script src="js/jquery.preloaders.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/confcourse.js"></script>
+  <script src="js/removeToastr.js"></script>
+  <script src="js/checkonline.js"></script>
+  <script src="js/checkoffline.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/offline.js"></script>
+
+</body>
+
+</html>
