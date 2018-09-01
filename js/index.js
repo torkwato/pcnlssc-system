@@ -2,7 +2,7 @@
 var _$_e7da=["AIzaSyDDzkNABTruZtEznHKShzc9iXPJonQmgoU","voting-fcca7.firebaseapp.com","https://voting-fcca7.firebaseio.com","voting-fcca7","voting-fcca7.appspot.com","369369085108","initializeApp"];var config={apiKey:_$_e7da[0],authDomain:_$_e7da[1],databaseURL:_$_e7da[2],projectId:_$_e7da[3],storageBucket:_$_e7da[4],messagingSenderId:_$_e7da[5]};firebase[_$_e7da[6]](config)
 
  var db = firebase.firestore();
-
+$( "#tftime" ).datepicker();
 var submitConfig = false;
 var globalparameter;
 var votable = $('#voters-table').DataTable({
@@ -177,7 +177,7 @@ $(document).ready( function () {
         toastr.remove()
         var childKey = snapshot.key;
     		var childData = snapshot.val();
-    		var dataSet = [childKey,"<img style='height:20px; width:20px' src="+childData.url+">",childData.fname,childData.lname,childData.position,childData.partylist,childData.vote];
+    		var dataSet = [childKey,"<img style='height:30px; width:30px' src="+childData.url+">",childData.fname,childData.lname,childData.position,childData.partylist,childData.vote];
 	    	cantable.rows.add([dataSet]).draw();
 	    	// $("#pos").append($('<option/>').attr("value", childData.position).text(childData.position));
    	 	});
@@ -608,6 +608,7 @@ $('#candidates-table tbody').on('click', 'tr', function () {
 /////////------ADD STUDENT------////////
 $('#submit').on('click', function () {
   var a = 0;
+  var aa = 0;
 	var id = $('#id').val();
 	var fname = $('#fname').val().toLowerCase();
 	var lname = $('#lname').val();
@@ -1027,7 +1028,7 @@ function refreshTableCan(){
   snapshot.forEach(function(childSnapshot) {
     var childKey = childSnapshot.key;
     var childData = childSnapshot.val();
-    var dataSet = [childKey,"<img style='height:20px; width:20px' src="+childData.url+">",childData.fname,childData.lname,childData.position,childData.partylist,childData.vote];
+    var dataSet = [childKey,"<img style='height:30px; width:30px' src="+childData.url+">",childData.fname,childData.lname,childData.position,childData.partylist,childData.vote];
 
 	  cantable.rows.add([dataSet]).draw();
 

@@ -1,7 +1,7 @@
 
 var _$_e7da=["AIzaSyDDzkNABTruZtEznHKShzc9iXPJonQmgoU","voting-fcca7.firebaseapp.com","https://voting-fcca7.firebaseio.com","voting-fcca7","voting-fcca7.appspot.com","369369085108","initializeApp"];var config={apiKey:_$_e7da[0],authDomain:_$_e7da[1],databaseURL:_$_e7da[2],projectId:_$_e7da[3],storageBucket:_$_e7da[4],messagingSenderId:_$_e7da[5]};firebase[_$_e7da[6]](config)
 
-
+var color="";
 var x = 0;
 var y = 0;
 var z = 0;
@@ -9,7 +9,20 @@ var votable = $('#voters-table').DataTable({
 			    aoColumnDefs: [
 			      { bVisible: false, aTargets: [0] }
 			    ],
-			    'paging': true
+					'paging': true,
+					columnDefs: [{targets: 3,
+                    render: function ( data, type, row ) {
+                      var color = 'black';
+                      if (data == "voted") {
+                        color = 'red';
+                      }
+                      if (data == "notvoted") {
+                        color = 'green';
+                      }
+                      return '<span style="color:' + color + '">' + data + '</span>';
+                    }
+               }],
+
   			});
 
 ///display registered voters
@@ -49,38 +62,19 @@ $(document).ready( function () {
 
 });
 
-		//
-		// 	var refDisplay = firebase.database().ref().child("count");
-   	// 	refDisplay.on("child_added", function (snapshot) {
-    //     var childKey = snapshot.key;
-    //     var childData = snapshot.val();
-    //     console.log(childKey)
-    //     console.log(childData)
-    //     if (!snapshot.exists()) {
-    //     	$("#totalvoters").append('<h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 0</h2><h4>Total Voters</h4>');
-    //     }else{
-    //     	$("#totalvoters").append('<h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> ' +childData.tvotes+'</h2><h4>Total Voters</h4>');
-    //     }
-    // });
-   		// var refV = firebase.database().ref().child("count");
-			//     refV.on("value", function (snapshot) {
-			//     		childKey = snapshot.key;
-			//     		childData =  snapshot.val();
-			//       	console.log(snapshot.val())
-			//         if (!snapshot.val()) {
-			//         	$("#totalvoters").append('<h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 0</h2><h4>Total Voters</h4>');
-			//         }
-			//     });
-
-
-
 
 	var ref = firebase.database().ref().child("voters");
 
 	ref.on("child_added", function (snapshot) {
 	var childKey = snapshot.key;
 	var childData = snapshot.val();
-	var dataSet = [childKey,childData.fname, childData.lname, childData.course, childData.statvote];
+	if (childData.statvote === "voted") {
+		color='led-red'
+	}
+	if (childData.statvote === "notvoted") {
+		color='led-yellow'
+	}
+	var dataSet = [childKey,childData.fname, childData.lname, childData.course, childData.statvote, '<div class='+color+'></div>'];
 
 
 	votable.rows.add([dataSet]).draw();
@@ -89,12 +83,14 @@ $(document).ready( function () {
 $('#voters-table tbody').on('click', 'tr', function () {
         var dataCan = votable.row( this ).data();
         $.confirm({
+							theme: 'supervan',
 					    title: 'Action!',
 					    content: 'Edit or Remove '
 					    +dataCan[1]+" "+dataCan[2],
 					    buttons: {
 					        Remove: function () {
 					        	$.confirm({
+													theme: 'supervan',
 											    title: 'Confirm!',
 											    content: 'Continue?',
 											    buttons: {

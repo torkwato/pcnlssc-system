@@ -15,3 +15,13 @@ var refV = firebase.database().ref().child("admin/status");
 				      }, delay);
 			    }
 			  })
+
+
+
+				$('#contact').on('click',function () {
+					$.alert({
+						theme: 'supervan',
+				    title: 'Contact Developer:',
+				    content: 'Email - domingo22knoralyn@gmail.com',
+				});
+				})

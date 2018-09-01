@@ -1,7 +1,9 @@
 var x = 0;
 var z = 0;
 var y = 0;
-
+var c1 = 0;
+var c2 = 0;
+var c3 = 0;
 $(document).ready(function() {
 
   var refPos = firebase.database().ref().child("position/");
@@ -26,6 +28,21 @@ $(document).ready(function() {
     z = z + 1;
     $('#cc').html(z)
 
+  })
+  var refPos = firebase.database().ref().child("voters/");
+  refPos.on("child_added", function(snapshot) {
+
+    var data = snapshot.val()
+    c1 = c1 + 1;
+    $('#tv').html(c1)
+    if(data.statvote ==="notvoted"){
+      c2 = c2 + 1;
+      $('#nv').html(c2)
+    }
+    if(data.statvote ==="voted"){
+      c3 = c3 + 1;
+      $('#v').html(c3)
+    }
   })
   var refPos = firebase.database().ref().child("candidates/");
   refPos.on("child_added", function(snapshot) {
@@ -74,7 +91,8 @@ function getTime(x) {
 
 function list(contact) {
   var html = '';
-  html += '<div class="panel panel-default">'
+  html += '<div class="col-md-6">'
+  html += '<div class="panel">'
   html += '<div class="panel-heading main-color-bg">'
   html += '<h3 class="panel-title">' + contact.position + '</h3>'
   html += '</div>'
@@ -83,6 +101,7 @@ function list(contact) {
   html += '<ul class="list-group-item" id=' + contact.position + '>';
   html += '</ul>';
   // html += '</div>';
+  html += '</div>';
   html += '</div>';
   return html;
 }

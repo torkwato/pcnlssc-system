@@ -40,6 +40,8 @@ $('#btn-dbname').on('click', function() {
         result(x)
         students(x)
         voters(x)
+        toastr.success("Saved successfully!")
+
       },
       Nope: function() {
         toastr.success("Denied!")
@@ -248,6 +250,8 @@ $('#btn-deletedb').on('click', function() {
           snapshot.ref.remove()
           $('#dblist option[value=' + y + ']').remove();
           $('#dblist_load option[value=' + z + ']').remove();
+          toastr.success("Deleted successfully!")
+
         })
       },
       Nope: function() {
@@ -287,6 +291,8 @@ $('#btn-loaddb').on('click', function() {
           result1(data.result)
           students1(data.students)
           voters1(data.voters)
+          toastr.success("Loaded successfully!")
+
         })
       },
       Nope: function() {
@@ -470,5 +476,157 @@ function sec(question, answer) {
     snapshot.ref.update(post)
     toastr.remove()
     toastr.success("Successfully updated!");
+  })
+}
+$("#btn-createdb").on('click', function(event) {
+  var $this = $(this);
+  $this.button('loading');
+  setTimeout(function() {
+    $this.button('reset');
+  }, 2000);
+
+  var x = $('#dbname1').val().replace(/ /g, '');
+
+  $.confirm({
+    theme: 'supervan',
+    title: 'This will overwrite your current on-going election:',
+    content: 'Do you want to continue?',
+    buttons: {
+      Continue: function() {
+        account2()
+        candidates2()
+        canlist2()
+        course2()
+        limit2()
+        partylist2()
+        penalty2()
+        position2()
+        result2()
+        students2()
+        voters2()
+        var data ={
+          defaultvalue:"empty"
+        }
+        var updates = {};
+        updates['backup/' + x] = data;
+        toastr.success("New election has been added to database")
+        return firebase.database().ref().update(updates);
+      },
+      Nope: function() {
+        toastr.success("Denied!")
+      }
+    }
+  });
+})
+function account2(key) {
+  var account = firebase.database().ref().child("account");
+  account.on("value", function(snapshot) {
+    data = snapshot.val()
+    snapshot.ref.remove()
+  })
+}
+
+
+
+function candidates2(key) {
+  var candidates = firebase.database().ref().child("candidates");
+  candidates.on("value", function(snapshot) {
+    data = snapshot.val()
+    snapshot.ref.remove()
+
+  })
+}
+
+
+function canlist2(key) {
+  var canlist = firebase.database().ref().child("canlist");
+  canlist.on("value", function(snapshot) {
+    data = snapshot.val()
+    snapshot.ref.remove()
+
+  })
+}
+
+
+
+function course2(key) {
+  var course = firebase.database().ref().child("course");
+  course.on("value", function(snapshot) {
+    data = snapshot.val()
+    snapshot.ref.remove()
+
+  })
+}
+
+
+function limit2(key) {
+  var limit = firebase.database().ref().child("limit");
+  limit.on("value", function(snapshot) {
+    data = snapshot.val()
+    snapshot.ref.remove()
+
+  })
+}
+
+
+function partylist2(key) {
+  var partylist = firebase.database().ref().child("partylist");
+  partylist.on("value", function(snapshot) {
+    data = snapshot.val()
+    snapshot.ref.remove()
+
+  })
+}
+
+
+function penalty2(key) {
+  var penalty = firebase.database().ref().child("penalty");
+  penalty.on("value", function(snapshot) {
+    data = snapshot.val()
+    snapshot.ref.remove()
+
+  })
+}
+
+
+
+function position2(key) {
+  var position = firebase.database().ref().child("position");
+  position.on("value", function(snapshot) {
+    data = snapshot.val()
+    snapshot.ref.remove()
+
+  })
+}
+
+
+
+function result2(key) {
+  var result = firebase.database().ref().child("candidates");
+  result.on("value", function(snapshot) {
+    data = snapshot.val()
+    snapshot.ref.remove()
+
+  })
+}
+
+
+function students2(key) {
+  var students = firebase.database().ref().child("students");
+  students.on("value", function(snapshot) {
+    data = snapshot.val()
+    snapshot.ref.remove()
+
+  })
+}
+
+
+
+function voters2(key) {
+  var voters = firebase.database().ref().child("voters");
+  voters.on("value", function(snapshot) {
+    data = snapshot.val()
+    snapshot.ref.remove()
+
   })
 }
